@@ -28,8 +28,11 @@ public class FMatriz extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         PMatriz = new javax.swing.JPanel();
-        txMatriz = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txMatriz = new javax.swing.JTextArea();
 
         jInternalFrame1.setVisible(true);
 
@@ -44,7 +47,16 @@ public class FMatriz extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        txMatriz.setColumns(20);
+        txMatriz.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txMatriz.setRows(5);
+        jScrollPane2.setViewportView(txMatriz);
 
         javax.swing.GroupLayout PMatrizLayout = new javax.swing.GroupLayout(PMatriz);
         PMatriz.setLayout(PMatrizLayout);
@@ -52,14 +64,14 @@ public class FMatriz extends javax.swing.JFrame {
             PMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PMatrizLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                 .addContainerGap())
         );
         PMatrizLayout.setVerticalGroup(
             PMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PMatrizLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -115,6 +127,9 @@ public class FMatriz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel PMatriz;
     private javax.swing.JInternalFrame jInternalFrame1;
-    public javax.swing.JLabel txMatriz;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    public javax.swing.JTextArea txMatriz;
     // End of variables declaration//GEN-END:variables
 }

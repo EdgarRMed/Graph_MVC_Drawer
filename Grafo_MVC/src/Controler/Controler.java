@@ -58,8 +58,9 @@ public class Controler implements ActionListener{
         lienzo = new Lienzo();
         matriz= new FMatriz();
         //Se agrega el frame para la matris
-       // matriz.setResizable(false);
+        matriz.setResizable(false);
         matriz.setVisible(false);
+        matriz.txMatriz.setEditable(false);
         
         // Se agrea el lienzo al panel principal
         lienzo.setSize(1000,400);

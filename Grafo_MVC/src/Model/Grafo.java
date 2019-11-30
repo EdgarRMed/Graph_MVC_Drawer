@@ -156,16 +156,16 @@ public class Grafo implements Serializable{
             return cad;
         }   
         public String mostrarMatriz(){
-            String mat=" ";
+            String mat="";
                for (Arista[] A: M){
                 for(Arista a: A){
                     if(a!=null){
-                        mat+="1 ";
+                        mat+="1  ";
                     }
                     else
-                        mat+="0 ";
+                        mat+="0  ";
                 }
-                mat+="\n";
+                mat+='\n';
             }
             return mat;
            
