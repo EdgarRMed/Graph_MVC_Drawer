@@ -155,6 +155,21 @@ public class Grafo implements Serializable{
                 cad += v.getNombre()+", ";
             return cad;
         }   
+        public String mostrarMatriz(){
+            String mat=" ";
+               for (Arista[] A: M){
+                for(Arista a: A){
+                    if(a!=null){
+                        mat+="1 ";
+                    }
+                    else
+                        mat+="0 ";
+                }
+                mat+="\n";
+            }
+            return mat;
+           
+        }
 
 	public void dibujar(Graphics2D g2, JPanel l){
                 

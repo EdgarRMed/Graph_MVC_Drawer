@@ -2,6 +2,7 @@ package Controler;
 
 import Model.Grafo;
 import Model.Model;
+import View.FMatriz;
 import View.Lienzo;
 import View.MainView;
 import java.awt.BorderLayout;
@@ -34,6 +35,7 @@ public class Controler implements ActionListener{
     public MainView view;
     public Model model;
     public Lienzo lienzo;
+    public FMatriz matriz;
     // Fin atributos
     
     public Controler(MainView view, Model model) {
@@ -54,6 +56,11 @@ public class Controler implements ActionListener{
     public void initComponents(){
         //Se instancian los componentes
         lienzo = new Lienzo();
+        matriz= new FMatriz();
+        //Se agrega el frame para la matris
+       // matriz.setResizable(false);
+        matriz.setVisible(false);
+        
         // Se agrea el lienzo al panel principal
         lienzo.setSize(1000,400);
         lienzo.setLocation(0, 0);
@@ -69,6 +76,7 @@ public class Controler implements ActionListener{
         view.guardarMenuItem.addActionListener(this);
         view.guardarComoMenuItem.addActionListener(this);
         view.salirMenuItem.addActionListener(this);
+        view.showMatrixBtn.addActionListener(this);
 
         // Escucha de los eventos del raton en el lienzo   
         lienzo.addMouseListener(new MouseAdapter() {
@@ -193,5 +201,9 @@ public class Controler implements ActionListener{
         
         if(e.getSource() == view.salirMenuItem)
             view.dispose();
+        if(e.getSource()==view.showMatrixBtn){
+            matriz.txMatriz.setText(model.grafo.mostrarMatriz());
+            matriz.setVisible(true);
+        }
     }
 } // Fin del controlador
