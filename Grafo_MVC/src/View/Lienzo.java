@@ -7,6 +7,7 @@
 package View;
 
 import Model.Grafo;
+import Model.Vertice;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -25,19 +26,23 @@ public class Lienzo extends JPanel {
     }
 	
 		
-        @Override
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-	 	Graphics2D g2 = (Graphics2D)g; 
-	 	setBackground(Color.white);
-                try{
-		grafo.dibujar(g2, this);
-                }catch(NullPointerException e){
-                    System.out.println(e.getMessage());
-                }
-	}		
-        
-	
+    @Override
+    public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D)g; 
+            setBackground(Color.white);
+            try{
+            grafo.dibujar(g2, this);
+            }catch(NullPointerException e){
+                System.out.println(e.getMessage());
+            }
+    }	
+      
+    public void limpiar (Grafo g){
+        //cambiamos el grafo
+        grafo = g;
+        Vertice.nVertices=1; //reiniciamos el numero de vertices
 
-    
+        repaint();
+    }
 }

@@ -32,6 +32,7 @@ public class MainView extends javax.swing.JFrame {
         ToolsPanel = new javax.swing.JPanel();
         showMatrixBtn = new javax.swing.JButton();
         infoBtn = new javax.swing.JButton();
+        limpiarBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         archivoMenu = new javax.swing.JMenu();
         abrirMenuItem = new javax.swing.JMenuItem();
@@ -51,6 +52,8 @@ public class MainView extends javax.swing.JFrame {
 
         infoBtn.setText("Mostar información");
 
+        limpiarBtn.setText("Limpiar");
+
         javax.swing.GroupLayout ToolsPanelLayout = new javax.swing.GroupLayout(ToolsPanel);
         ToolsPanel.setLayout(ToolsPanelLayout);
         ToolsPanelLayout.setHorizontalGroup(
@@ -58,15 +61,20 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(ToolsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ToolsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(showMatrixBtn)
+                    .addGroup(ToolsPanelLayout.createSequentialGroup()
+                        .addComponent(showMatrixBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(limpiarBtn))
                     .addComponent(infoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(358, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
         ToolsPanelLayout.setVerticalGroup(
             ToolsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ToolsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(showMatrixBtn)
+                .addGroup(ToolsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showMatrixBtn)
+                    .addComponent(limpiarBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(infoBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -155,6 +163,7 @@ public class MainView extends javax.swing.JFrame {
     public javax.swing.JMenuItem guardarMenuItem;
     public javax.swing.JButton infoBtn;
     private javax.swing.JMenu jMenu2;
+    public javax.swing.JButton limpiarBtn;
     public javax.swing.JMenuBar menuBar;
     public javax.swing.JMenuItem salirMenuItem;
     public javax.swing.JButton showMatrixBtn;

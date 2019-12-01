@@ -57,7 +57,7 @@ public class Controler implements ActionListener{
         //Se instancian los componentes
         lienzo = new Lienzo();
         matriz= new FMatriz();
-        //Se agrega el frame para la matris
+        //Se agrega el frame para la matriz
         matriz.setResizable(false);
         matriz.setVisible(false);
         matriz.txMatriz.setEditable(false);
@@ -78,7 +78,7 @@ public class Controler implements ActionListener{
         view.guardarComoMenuItem.addActionListener(this);
         view.salirMenuItem.addActionListener(this);
         view.showMatrixBtn.addActionListener(this);
-
+        view.limpiarBtn.addActionListener(this);
         // Escucha de los eventos del raton en el lienzo   
         lienzo.addMouseListener(new MouseAdapter() {
             @Override
@@ -202,9 +202,15 @@ public class Controler implements ActionListener{
         
         if(e.getSource() == view.salirMenuItem)
             view.dispose();
+        
         if(e.getSource()==view.showMatrixBtn){
             matriz.txMatriz.setText(model.grafo.mostrarMatriz());
             matriz.setVisible(true);
+        }
+        
+        if(e.getSource() == view. limpiarBtn){
+            model.grafo = new Grafo();
+            lienzo.limpiar(model.grafo);
         }
     }
 } // Fin del controlador

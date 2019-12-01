@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package Model;
 
@@ -12,16 +7,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
-/**
- * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
 public class Grafo implements Serializable{
     private int orden; //orden del grafo
 	private ArrayList <Vertice> vertices; 
-        //private ArrayList<Flecha> flechas; // Lista que guarda todas las flechas
 	private Arista [][]M;  //matriz de adyacencia
-	
 	
 	public Grafo(){
 		this(10);
@@ -31,7 +20,6 @@ public class Grafo implements Serializable{
 		this.orden = orden;
 		vertices = new ArrayList<> ();
 		M = new Arista[orden][orden];
-               // flechas = new ArrayList<>();
 	}
 
 	public void agregarVertice(Point2D p){		
@@ -46,7 +34,6 @@ public class Grafo implements Serializable{
         public void eliminarVertice(Point2D x){
             Vertice v=getVertice(x);
             //Eliminación de todas las aristas del vertice
-
             
             for (int i = 0; i< 10; i++){
                 for (int j = 0; j<10; j++){
@@ -60,17 +47,6 @@ public class Grafo implements Serializable{
             
             vertices.removeIf(e->(e.getCirculo().contains(x)));
             //Comprobación de la matriz
-            for (Arista[] A: M){
-                for(Arista a: A){
-                    if(a!=null){
-                        System.out.print(a.getPeso()+" ");
-                    }
-                    else
-                        System.out.print("0 ");
-                }
-                System.out.println();
-            }
-            System.out.println("");
         }
 
 	
@@ -106,8 +82,6 @@ public class Grafo implements Serializable{
                 }
             
             }
-            
-
 	    v.mover(b);
 
         }
@@ -115,7 +89,6 @@ public class Grafo implements Serializable{
             //TODO: crear una arista y agregarla a la matriz
             //  donde corresponde de acuerdo a los vertices
             // po y pd, son los puntos origen de los vertices
-            
             
             Vertice a = null;
             Vertice b = null;
@@ -129,37 +102,25 @@ public class Grafo implements Serializable{
             }
             Arista e = new Arista(a.getOrigen(), b.getOrigen());
             M[Integer.parseInt(a.getNombre())][Integer.parseInt(b.getNombre())] = e;
-            
-                
-            
 	}
+        
         public void eliminarArista(Point2D x){
             
         }
-        // Se crea el metodo nuevo para agragar las flechas a un arrylist
-      /*  public void agregarFlecha(Point2D po, Point2D pd){
-            Flecha f = new Flecha(po,pd);
-            for (Vertice v: vertices){
-                if (v.getCirculo().contains(po)){
-                    flechas.add(f);
-                    //System.out.println(flechas);
-                }
-            }
-        }*/
-            
-	
-         //mostrar la lista de vertices
+
+        //mostrar la lista de vertices
         public String mostarVertices(){
             String cad = " ";
             for(Vertice v: vertices) 
                 cad += v.getNombre()+", ";
             return cad;
         }   
+        
         public String mostrarMatriz(){
             String mat="";
-               for (Arista[] A: M){
-                for(Arista a: A){
-                    if(a!=null){
+               for (int i = 1; i<vertices.size()+1; i++){
+                for(int j = 1; j< vertices.size()+1; j++){
+                    if(M[i][j]!=null){
                         mat+="1  ";
                     }
                     else
@@ -167,8 +128,7 @@ public class Grafo implements Serializable{
                 }
                 mat+='\n';
             }
-            return mat;
-           
+            return mat;   
         }
 
 	public void dibujar(Graphics2D g2, JPanel l){
@@ -187,11 +147,8 @@ public class Grafo implements Serializable{
                         }
                     }
                 }
-                /*
-        // Se dibujan las flechas
-                for(Flecha v: flechas)
-                v.drawArrow(g2);
-*/
+                
+
 	}
 
 }

@@ -31,7 +31,7 @@ public class FMatriz extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         PMatriz = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         txMatriz = new javax.swing.JTextArea();
 
         jInternalFrame1.setVisible(true);
@@ -54,25 +54,18 @@ public class FMatriz extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         txMatriz.setColumns(20);
-        txMatriz.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txMatriz.setRows(5);
-        jScrollPane2.setViewportView(txMatriz);
+        jScrollPane3.setViewportView(txMatriz);
 
         javax.swing.GroupLayout PMatrizLayout = new javax.swing.GroupLayout(PMatriz);
         PMatriz.setLayout(PMatrizLayout);
         PMatrizLayout.setHorizontalGroup(
             PMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PMatrizLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
         );
         PMatrizLayout.setVerticalGroup(
             PMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PMatrizLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,7 +121,7 @@ public class FMatriz extends javax.swing.JFrame {
     public javax.swing.JPanel PMatriz;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
     public javax.swing.JTextArea txMatriz;
     // End of variables declaration//GEN-END:variables
