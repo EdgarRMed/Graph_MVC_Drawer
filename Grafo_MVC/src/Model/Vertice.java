@@ -80,6 +80,8 @@ public class Vertice implements Serializable{
         return origen;
     }
     
+    
+    
     public void mover(Point2D c){
         double x, y;
         x=c.getX();

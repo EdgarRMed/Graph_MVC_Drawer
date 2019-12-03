@@ -28,11 +28,11 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        MainPanelForLienzo = new javax.swing.JPanel();
         ToolsPanel = new javax.swing.JPanel();
         showMatrixBtn = new javax.swing.JButton();
         infoBtn = new javax.swing.JButton();
         limpiarBtn = new javax.swing.JButton();
+        MainPanelForLienzo = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         archivoMenu = new javax.swing.JMenu();
         abrirMenuItem = new javax.swing.JMenuItem();
@@ -42,9 +42,6 @@ public class MainView extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        MainPanelForLienzo.setBackground(new java.awt.Color(255, 255, 255));
-        MainPanelForLienzo.setLayout(new java.awt.BorderLayout());
 
         ToolsPanel.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -66,12 +63,12 @@ public class MainView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(limpiarBtn))
                     .addComponent(infoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(477, Short.MAX_VALUE))
         );
         ToolsPanelLayout.setVerticalGroup(
             ToolsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ToolsPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addGroup(ToolsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(showMatrixBtn)
                     .addComponent(limpiarBtn))
@@ -79,6 +76,9 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(infoBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        MainPanelForLienzo.setBackground(new java.awt.Color(255, 255, 255));
+        MainPanelForLienzo.setLayout(new java.awt.BorderLayout());
 
         archivoMenu.setText("Archivo");
 
@@ -96,7 +96,7 @@ public class MainView extends javax.swing.JFrame {
 
         menuBar.add(archivoMenu);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Ver");
         menuBar.add(jMenu2);
 
         setJMenuBar(menuBar);
@@ -105,13 +105,18 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanelForLienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(ToolsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ToolsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(MainPanelForLienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(MainPanelForLienzo, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(MainPanelForLienzo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ToolsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -162,7 +167,7 @@ public class MainView extends javax.swing.JFrame {
     public javax.swing.JMenuItem guardarComoMenuItem;
     public javax.swing.JMenuItem guardarMenuItem;
     public javax.swing.JButton infoBtn;
-    private javax.swing.JMenu jMenu2;
+    public javax.swing.JMenu jMenu2;
     public javax.swing.JButton limpiarBtn;
     public javax.swing.JMenuBar menuBar;
     public javax.swing.JMenuItem salirMenuItem;

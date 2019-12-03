@@ -54,6 +54,7 @@ public class FMatriz extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         txMatriz.setColumns(20);
+        txMatriz.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txMatriz.setRows(5);
         jScrollPane3.setViewportView(txMatriz);
 

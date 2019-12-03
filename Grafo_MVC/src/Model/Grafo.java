@@ -8,20 +8,20 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class Grafo implements Serializable{
+    public String autor, nombre,descripcion;
     private int orden; //orden del grafo
 	private ArrayList <Vertice> vertices; 
 	private Arista [][]M;  //matriz de adyacencia
-	
 	public Grafo(){
 		this(10);
 	}
 	
 	public Grafo(int orden){
-		this.orden = orden;
-		vertices = new ArrayList<> ();
-		M = new Arista[orden][orden];
-	}
-
+            this.orden = orden;
+            vertices = new ArrayList<> ();
+            M = new Arista[orden][orden];
+       	}
+        
 	public void agregarVertice(Point2D p){		
 		Vertice v = new Vertice(p);
 		vertices.add(v);
@@ -33,8 +33,7 @@ public class Grafo implements Serializable{
         
         public void eliminarVertice(Point2D x){
             Vertice v=getVertice(x);
-            //Eliminación de todas las aristas del vertice
-            
+            //Eliminación de todas las aristas del vertice   
             for (int i = 0; i< 10; i++){
                 for (int j = 0; j<10; j++){
                     if(M[i][j]!=null){
@@ -44,9 +43,8 @@ public class Grafo implements Serializable{
                     }
                 }
             }
-            
-            vertices.removeIf(e->(e.getCirculo().contains(x)));
-            //Comprobación de la matriz
+            // Se elimina el vértice
+            vertices.removeIf(e->(e.getCirculo().contains(x)));   
         }
 
 	
@@ -116,19 +114,48 @@ public class Grafo implements Serializable{
             return cad;
         }   
         
+        /*
+        Se crea un strig que va guardando la matriz y después se le pasa
+        al frame que contiene la matriz.
+        */
         public String mostrarMatriz(){
+            Integer indexi=0,indexj=1;
             String mat="";
-               for (int i = 1; i<vertices.size()+1; i++){
-                for(int j = 1; j< vertices.size()+1; j++){
+               for (int i = 0; i<Vertice.nVertices; i++){
+                for(int j = 0; j< Vertice.nVertices; j++){
                     if(M[i][j]!=null){
                         mat+="1  ";
                     }
-                    else
-                        mat+="0  ";
+                    else{
+                        if(i == 0){
+                        mat+= String.valueOf(indexi)+"  ";
+                        indexi++;
+                        }
+                        else{
+                            if(j == 0 && i > 0){
+                                mat+= String.valueOf(indexj)+"  ";
+                                indexj++;
+                            }
+                            else
+                                mat+="0  ";
+                        }
+                        
+                    }   
                 }
                 mat+='\n';
             }
             return mat;   
+        }
+        
+        public void complemento(){
+            for (Arista[] e: M){
+                    for(Arista b: e){
+                        if(b!=null){
+                            
+                            
+                        }
+                    }
+                }
         }
 
 	public void dibujar(Graphics2D g2, JPanel l){

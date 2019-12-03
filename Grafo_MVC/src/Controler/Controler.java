@@ -5,6 +5,8 @@ import Model.Model;
 import View.FMatriz;
 import View.Lienzo;
 import View.MainView;
+import View.Informacion;
+import View.guardarComoFrame;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
@@ -34,8 +36,10 @@ public class Controler implements ActionListener{
     private Point2D po, pd;
     public MainView view;
     public Model model;
-    public Lienzo lienzo;
+    public Lienzo lienzo, lienzoComplemento;
     public FMatriz matriz;
+    public Informacion infoFrame;
+    public guardarComoFrame saveAsFrame;
     // Fin atributos
     
     public Controler(MainView view, Model model) {
@@ -46,7 +50,7 @@ public class Controler implements ActionListener{
     
     public void start(){    // Se inicia la aplicación
        view.setTitle("Graficador");
-       view.setSize(700, 500);
+       view.setSize(1200, 700);
        initComponents();
 
     }
@@ -55,9 +59,13 @@ public class Controler implements ActionListener{
 
     public void initComponents(){
         //Se instancian los componentes
+        lienzoComplemento = new Lienzo();
         lienzo = new Lienzo();
         matriz= new FMatriz();
-        //Se agrega el frame para la matriz
+        infoFrame = new Informacion();
+        saveAsFrame = new guardarComoFrame();
+        saveAsFrame.setDefaultCloseOperation(guardarComoFrame.DISPOSE_ON_CLOSE);
+        //Se agrega el panel para la matriz
         matriz.setResizable(false);
         matriz.setVisible(false);
         matriz.txMatriz.setEditable(false);
@@ -71,6 +79,17 @@ public class Controler implements ActionListener{
         lienzo.setGrafo(model.grafo);       
         view.repaint();
         // Fin de la agregacion
+        // Se agrea el lienzo al panel
+        lienzoComplemento.setSize(500,400);
+        lienzoComplemento.setLocation(0, 0);
+        infoFrame.complementPanel.removeAll();
+        infoFrame.complementPanel.add(lienzoComplemento, BorderLayout.CENTER);
+        infoFrame.complementPanel.revalidate();
+        lienzoComplemento.setGrafo(model.grafo);       
+        infoFrame.repaint();
+        lienzoComplemento.repaint();
+        infoFrame.setDefaultCloseOperation(Informacion.DISPOSE_ON_CLOSE);
+        // Fin de la agregacion
 
         // Se agreagan los escuchas
         view.abrirMenuItem.addActionListener(this);
@@ -78,7 +97,10 @@ public class Controler implements ActionListener{
         view.guardarComoMenuItem.addActionListener(this);
         view.salirMenuItem.addActionListener(this);
         view.showMatrixBtn.addActionListener(this);
+        view.infoBtn.addActionListener(this);
         view.limpiarBtn.addActionListener(this);
+        saveAsFrame.guardarBtn.addActionListener(this);
+        saveAsFrame.cancelBtn.addActionListener(this);
         // Escucha de los eventos del raton en el lienzo   
         lienzo.addMouseListener(new MouseAdapter() {
             @Override
@@ -86,7 +108,7 @@ public class Controler implements ActionListener{
                 Point2D x = evento.getPoint();
                 if (evento.getButton() == 1){
                     if(model.grafo.getVertice(x) == null) //no existe vertice
-                            model.grafo.agregarVertice(x);
+                        model.grafo.agregarVertice(x);
                     lienzo.setGrafo(model.grafo);
                     lienzo.repaint();
                 }
@@ -184,21 +206,62 @@ public class Controler implements ActionListener{
         }
 
         if(e.getSource() == view.guardarMenuItem){
-            File grafo = new File("Grafos/grafo1.bin"); // Se crea el archivo
+            if(model.grafo.nombre == null){
+                saveAsFrame.setLocationRelativeTo(view);
+                saveAsFrame.setVisible(true);
+            }
+            else{
+                File grafo = new File("Grafos/"+model.grafo.nombre+".bin"); // Se crea el archivo
+                try {
+                    FileOutputStream fileOS = new FileOutputStream(grafo); // Se pasa el archivo
+                    try (ObjectOutputStream objectOS = new ObjectOutputStream(fileOS)) {
+                        objectOS.writeObject(model.grafo); // Se esecribe
+                        objectOS.close(); // Se cierra el archivo
+                    } 
+                    JOptionPane.showMessageDialog(null,"Se guardo correctamente "+ model.grafo.nombre);
+
+                } catch (FileNotFoundException ex) { 
+                Logger.getLogger(Controler.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Controler.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+            }
+        }
+        
+        if(e.getSource() == view.guardarComoMenuItem){
+            saveAsFrame.setLocationRelativeTo(view);
+            saveAsFrame.setVisible(true);
+        
+        }
+        // Botnoes de guardarComoFrame
+        if(e.getSource() == saveAsFrame.guardarBtn){
+            model.grafo.nombre = saveAsFrame.nombreTxF.getText();
+            model.grafo.autor = saveAsFrame.autorTxF.getText();
+            model.grafo.descripcion = saveAsFrame.descripcionTxA.getText();
+            File grafo = new File("Grafos/"+model.grafo.nombre+".bin"); // Se crea el archivo
             try {
                 FileOutputStream fileOS = new FileOutputStream(grafo); // Se pasa el archivo
                 try (ObjectOutputStream objectOS = new ObjectOutputStream(fileOS)) {
                     objectOS.writeObject(model.grafo); // Se esecribe
                     objectOS.close(); // Se cierra el archivo
+                    saveAsFrame.dispose(); // Se cierra la ventana
                 } 
-                JOptionPane.showMessageDialog(null,"Se guardo correctamente "+ grafo.getName());
+                JOptionPane.showMessageDialog(null,"Se guardo correctamente "+ model.grafo.nombre);
 
             } catch (FileNotFoundException ex) { 
             Logger.getLogger(Controler.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(Controler.class.getName()).log(Level.SEVERE, null, ex);
             } 
+        
         }
+        
+        if(e.getSource() == saveAsFrame.cancelBtn){
+            saveAsFrame.dispose();
+        }
+        // Fin botones de guardar como 
+        
+        //Fin items del menú
         
         if(e.getSource() == view.salirMenuItem)
             view.dispose();
@@ -212,5 +275,25 @@ public class Controler implements ActionListener{
             model.grafo = new Grafo();
             lienzo.limpiar(model.grafo);
         }
+        
+        if(e.getSource() == view.infoBtn){
+            infoFrame.nombreTxF.setEditable(false);
+            infoFrame.autorTxF.setEditable(false);
+            if(model.grafo.nombre == null && model.grafo.autor == null){
+                infoFrame.nombreTxF.setText("Sin nombre");
+                infoFrame.autorTxF.setText("Sin autor");
+                infoFrame.jTextArea1.setText("No hay descripción");
+                
+            }
+            else{
+                infoFrame.nombreTxF.setText(model.grafo.nombre);
+                infoFrame.autorTxF.setText(model.grafo.autor);
+                infoFrame.jTextArea1.setText(model.grafo.descripcion);
+            }
+        infoFrame.setVisible(true);
+        }
+        
+       
+        
     }
 } // Fin del controlador
